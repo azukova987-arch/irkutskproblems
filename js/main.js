@@ -9,49 +9,8 @@ const problems = [
         status: "На рассмотрении",
         icon: "↗",
         imageClass: "image-roads"
-    },
-    {
-        id: 2,
-        title: "Переполненные мусорные контейнеры",
-        category: "Мусор",
-        description: "Контейнеры переполнены, рядом лежат пакеты с мусором. Нужен вывоз отходов и уборка площадки.",
-        address: "ул. Байкальская, жилой квартал",
-        status: "На рассмотрении",
-        icon: "♻",
-        imageClass: "image-trash"
-    },
-    {
-        id: 3,
-        title: "Не работает уличный фонарь",
-        category: "Освещение",
-        description: "Вечером участок улицы остаётся тёмным. Пешеходам трудно безопасно проходить по тротуару.",
-        address: "ул. Советская, возле дома 12",
-        status: "На рассмотрении",
-        icon: "☼",
-        imageClass: "image-light"
-    },
-    {
-        id: 4,
-        title: "Повреждена остановка",
-        category: "Благоустройство",
-        description: "У остановочного павильона повреждена боковая панель. Ожидать транспорт стало менее удобно.",
-        address: "ул. Партизанская, остановка",
-        status: "На рассмотрении",
-        icon: "⌂",
-        imageClass: "image-park"
-    },
-    {
-        id: 5,
-        title: "Убрали мусор во дворе",
-        category: "ЖКХ",
-        description: "После обращения территорию двора очистили. Спасибо всем, кто обратил внимание на проблему.",
-        address: "ул. Советская, двор дома 8",
-        status: "Решена",
-        icon: "✓",
-        imageClass: "image-housing"
     }
 ];
-
 // Находим элементы страницы, с которыми будет работать JavaScript.
 const problemList = document.getElementById("problemList");
 const searchInput = document.getElementById("searchInput");
