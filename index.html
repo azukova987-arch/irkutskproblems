@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Карта проблем Иркутска</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <a class="logo" href="index.html">
+            <span class="logo-mark">И</span>
+            <span>Иркутск<span class="logo-light">: карта проблем</span></span>
+        </a>
+
+        <button class="menu-button" id="menuButton" type="button" aria-label="Открыть меню">☰</button>
+
+        <nav class="main-nav" id="mainNav">
+            <a class="nav-link active" href="index.html">Главная</a>
+            <a class="nav-link" href="#map">Карта проблем</a>
+            <a class="nav-link" href="#problems">Обращения</a>
+            <a class="nav-link" href="#create">Сообщить о проблеме</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <p class="eyebrow">ГОРОДСКОЙ ПОРТАЛ</p>
+                <h1>Делаем Иркутск <span>лучше вместе</span></h1>
+                <p class="hero-description">
+                    Замечайте городские проблемы, рассказывайте о них и следите за изменениями.
+                    Каждый вклад помогает сделать город комфортнее.
+                </p>
+                <a class="button button-green" href="#create">Сообщить о проблеме <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="hero-note">
+                <span class="note-icon">✳</span>
+                <p><strong>Ваш голос важен</strong><br>Начните с проблемы рядом с домом.</p>
+            </div>
+        </section>
+
+        <section class="stats" aria-label="Статистика обращений">
+            <article class="stat-card">
+                <span class="stat-number" id="totalCount">5</span>
+                <span class="stat-label">обращений на портале</span>
+            </article>
+            <article class="stat-card">
+                <span class="stat-number" id="openCount">4</span>
+                <span class="stat-label">проблем требуют внимания</span>
+            </article>
+            <article class="stat-card">
+                <span class="stat-number" id="solvedCount">1</span>
+                <span class="stat-label">проблема решена</span>
+            </article>
+        </section>
+
+        <section class="section map-section" id="map">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">ИССЛЕДУЙТЕ ГОРОД</p>
+                    <h2>Проблемы на карте</h2>
+                </div>
+                <span class="section-caption">Демонстрационная карта</span>
+            </div>
+
+            <div class="map-layout">
+                <div class="demo-map" aria-label="Схематичная карта с отметками проблем">
+                    <div class="map-river"></div>
+                    <div class="map-road road-one"></div>
+                    <div class="map-road road-two"></div>
+                    <div class="map-road road-three"></div>
+                    <span class="map-label label-center">Иркутск</span>
+                    <button class="map-pin pin-one" data-problem-id="1" aria-label="Показать проблему: яма на дороге">1</button>
+                    <button class="map-pin pin-two" data-problem-id="2" aria-label="Показать проблему: переполненные контейнеры">2</button>
+                    <button class="map-pin pin-three" data-problem-id="3" aria-label="Показать проблему: не работает фонарь">3</button>
+                    <button class="map-pin pin-four" data-problem-id="4" aria-label="Показать проблему: повреждённая остановка">4</button>
+                    <div class="map-legend"><span class="legend-dot"></span> Проблема на карте</div>
+                </div>
+                <aside class="map-aside">
+                    <p class="eyebrow">КАК ЭТО РАБОТАЕТ</p>
+                    <h3>Город начинается с внимания</h3>
+                    <p>Каждая отметка обозначает место, где жителям нужна помощь или изменения.</p>
+                    <ul class="map-steps">
+                        <li><span>01</span> Найдите проблему</li>
+                        <li><span>02</span> Откройте обращение</li>
+                        <li><span>03</span> Следите за статусом</li>
+                    </ul>
+                    <p class="small-note">Сейчас показана схема для демонстрации интерфейса, а не точная географическая карта.</p>
+                </aside>
+            </div>
+        </section>
+
+        <section class="section" id="problems">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">ГОЛОСА ЖИТЕЛЕЙ</p>
+                    <h2>Последние обращения</h2>
+                </div>
+                <span class="section-caption" id="resultsCaption">5 публикаций</span>
+            </div>
+
+            <div class="filters">
+                <label class="search-box">
+                    <span aria-hidden="true">⌕</span>
+                    <input id="searchInput" type="search" placeholder="Найти проблему..." aria-label="Поиск проблем">
+                </label>
+                <label class="filter-label" for="categoryFilter">Категория</label>
+                <select id="categoryFilter">
+                    <option value="all">Все категории</option>
+                    <option value="Дороги">Дороги</option>
+                    <option value="Мусор">Мусор</option>
+                    <option value="Освещение">Освещение</option>
+                    <option value="Благоустройство">Благоустройство</option>
+                    <option value="ЖКХ">ЖКХ</option>
+                </select>
+            </div>
+
+            <div class="problem-grid" id="problemList">
+                <!-- Карточки обращений добавляет JavaScript -->
+            </div>
+            <p class="empty-message" id="emptyMessage" hidden>Ничего не найдено. Попробуйте изменить запрос.</p>
+        </section>
+
+        <section class="section create-section" id="create">
+            <div class="create-intro">
+                <p class="eyebrow">ВАШЕ ОБРАЩЕНИЕ</p>
+                <h2>Заметили проблему?</h2>
+                <p>Расскажите, что происходит. Чем точнее описание, тем легче понять, что нужно изменить.</p>
+                <div class="privacy-note"><span>✓</span> Заполните форму — мы проверим данные перед публикацией.</div>
+            </div>
+
+            <form class="report-form" id="reportForm">
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="problemTitle">Название проблемы *</label>
+                        <input id="problemTitle" name="title" type="text" minlength="5" maxlength="80" placeholder="Например, яма на дороге" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="problemCategory">Категория *</label>
+                        <select id="problemCategory" name="category" required>
+                            <option value="">Выберите категорию</option>
+                            <option>Дороги</option>
+                            <option>Мусор</option>
+                            <option>Освещение</option>
+                            <option>Благоустройство</option>
+                            <option>ЖКХ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="problemAddress">Адрес или ориентир *</label>
+                    <input id="problemAddress" name="address" type="text" minlength="4" maxlength="120" placeholder="Улица, дом или ближайший ориентир" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="problemDescription">Описание проблемы *</label>
+                    <textarea id="problemDescription" name="description" rows="4" minlength="15" maxlength="600" placeholder="Опишите, что случилось и почему это важно..." required></textarea>
+                    <span class="field-hint">От 15 до 600 символов.</span>
+                </div>
+
+                <div class="form-field">
+                    <label for="problemPhoto">Фотография (необязательно)</label>
+                    <input id="problemPhoto" name="photo" type="file" accept="image/*">
+                    <span class="field-hint">В этой версии фотография будет показана только в текущем браузере.</span>
+                </div>
+
+                <button class="button button-green submit-button" type="submit">Опубликовать обращение <span aria-hidden="true">↗</span></button>
+                <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="logo footer-logo" href="index.html"><span class="logo-mark">И</span><span>Иркутск<span class="logo-light">: карта проблем</span></span></a>
+        <p>Учебный проект. Вместе делаем город лучше.</p>
+        <a href="#top" class="back-to-top">Наверх ↑</a>
+    </footer>
+
+    <dialog class="problem-dialog" id="problemDialog">
+        <button class="dialog-close" id="dialogClose" type="button" aria-label="Закрыть">×</button>
+        <div id="dialogContent"></div>
+    </dialog>
+</body>
+</html>
