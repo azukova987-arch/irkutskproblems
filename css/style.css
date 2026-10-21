@@ -237,12 +237,25 @@ h1 {
     color: var(--muted);
     font-size: 13px;
 }
-/* расположение области карты и пояснения рядом */
+/* hасположение области карты и пояснения рядом */
 .map-layout {
     display: grid;
     grid-template-columns: minmax(0, 1.8fr) minmax(230px, 0.8fr);
     gap: 28px;
 }
+/* заглушка карты */
+.demo-map {
+    /* временная область вместо карты */
+    position: relative;
+    min-height: 340px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    border: 2px dashed #8bb99a;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #edf6ef, #dceee1);
+}
+
     .demo-map::before {
         content: "Здесь будет карта";
         color: #1c5937;

@@ -1,4 +1,4 @@
-// Тестовые обращения. Позже эти данные будут приходить с сервера.
+// пример обращения
 const problems = [
     {
         id: 1,
@@ -11,7 +11,7 @@ const problems = [
         imageClass: "image-roads"
     }
 ];
-// Находим элементы страницы, с которыми будет работать JavaScript.
+// элементы страницы
 const problemList = document.getElementById("problemList");
 const searchInput = document.getElementById("searchInput");
 const categoryFilter = document.getElementById("categoryFilter");
@@ -24,8 +24,7 @@ const reportForm = document.getElementById("reportForm");
 const formMessage = document.getElementById("formMessage");
 const problemDialog = document.getElementById("problemDialog");
 const dialogContent = document.getElementById("dialogContent");
-
-// Показывает список карточек на странице.
+// список карточек на странице
 function showProblems(list) {
     problemList.innerHTML = "";
 
@@ -63,8 +62,7 @@ function showProblems(list) {
     emptyMessage.hidden = list.length !== 0;
     resultsCaption.textContent = list.length + " публикаций";
 }
-
-// Защищает текст, который пользователь вводит в форму.
+// защита пользовательского текста
 function escapeHTML(text) {
     return String(text)
         .replaceAll("&", "&amp;")
@@ -73,8 +71,7 @@ function escapeHTML(text) {
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
 }
-
-// Обновляет числа в блоке статистики.
+// обновление чисел в статистике
 function updateStatistics() {
     totalCount.textContent = problems.length;
     openCount.textContent = problems.filter(function (problem) {
@@ -84,8 +81,7 @@ function updateStatistics() {
         return problem.status === "Решена";
     }).length;
 }
-
-// Ищет обращения по тексту и выбранной категории.
+// поиск обращений по тексту и фильтру
 function filterProblems() {
     const searchText = searchInput.value.toLowerCase().trim();
     const selectedCategory = categoryFilter.value;
@@ -104,8 +100,7 @@ function filterProblems() {
 
     showProblems(filteredProblems);
 }
-
-// Открывает подробную информацию об одном обращении.
+// кнопка подробнее
 function openProblem(problemId) {
     const problem = problems.find(function (item) {
         return item.id === Number(problemId);
@@ -125,12 +120,10 @@ function openProblem(problemId) {
 
     problemDialog.showModal();
 }
-
-// Поиск и фильтр срабатывают при изменении полей.
+// поиск и фильтр при изменении полей
 searchInput.addEventListener("input", filterProblems);
 categoryFilter.addEventListener("change", filterProblems);
-
-// Кнопки «Подробнее» обрабатываются через общий список карточек.
+// кнопки подробнее обрабатываются через общий список карточек
 problemList.addEventListener("click", function (event) {
     const button = event.target.closest("[data-problem-id]");
 
@@ -138,8 +131,7 @@ problemList.addEventListener("click", function (event) {
         openProblem(button.dataset.problemId);
     }
 });
-
-// Отметки на демонстрационной карте открывают соответствующие обращения.
+// отметки на демонстрационной карте открывают соответствующие обращения
 document.querySelector(".demo-map").addEventListener("click", function (event) {
     const pin = event.target.closest("[data-problem-id]");
 
@@ -147,13 +139,11 @@ document.querySelector(".demo-map").addEventListener("click", function (event) {
         openProblem(pin.dataset.problemId);
     }
 });
-
-// Закрывает окно с подробностями.
+// закрытие окна с подробностями
 document.getElementById("dialogClose").addEventListener("click", function () {
     problemDialog.close();
 });
-
-// Обрабатывает форму нового обращения.
+// обработка нового обращения
 reportForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -179,7 +169,7 @@ reportForm.addEventListener("submit", function (event) {
         imageClass: "image-park"
     };
 
-    // Если пользователь выбрал фото, покажем его на карточке.
+    // показ фото в карточке
     if (photoInput.files.length > 0) {
         const photo = photoInput.files[0];
 
@@ -190,7 +180,6 @@ reportForm.addEventListener("submit", function (event) {
 
         newProblem.photoUrl = URL.createObjectURL(photo);
     }
-
     problems.unshift(newProblem);
     updateStatistics();
     filterProblems();
@@ -200,12 +189,10 @@ reportForm.addEventListener("submit", function (event) {
 
     document.getElementById("problems").scrollIntoView({ behavior: "smooth" });
 });
-
-// Мобильное меню.
+// для телефона
 document.getElementById("menuButton").addEventListener("click", function () {
     document.getElementById("mainNav").classList.toggle("open");
 });
-
-// Первоначальное отображение списка и статистики.
+// первоначальное отображение списка и статистики
 showProblems(problems);
 updateStatistics();
